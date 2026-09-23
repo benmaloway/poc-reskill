@@ -1,0 +1,51 @@
+.back {
+  align-self: flex-start;
+  font-size: 0.9rem;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.username {
+  margin: 0.1rem 0 1rem;
+  color: var(--muted);
+}
+
+dl {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 0.6rem 1rem;
+  margin: 0;
+}
+
+dt {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+dd {
+  margin: 0;
+}
+
+.note {
+  margin: 1.25rem 0 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 480px) {
+  dl {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  dd {
+    margin-bottom: 0.6rem;
+  }
+}

@@ -1,0 +1,29 @@
+<li class="item" [class.done]="task().status === 'done'" [class.editing]="editing()">
+  <input
+    type="checkbox"
+    [checked]="task().status === 'done'"
+    (change)="toggle.emit(task().id)"
+    [attr.aria-label]="'Mark ' + task().title + (task().status === 'done' ? ' as to do' : ' as complete')"
+  />
+
+  <div class="content">
+    <div class="title-row">
+      <span class="title">{{ task().title }}</span>
+      <span class="badge" [class.badge-done]="task().status === 'done'">
+        {{ task().status === 'done' ? 'Done' : 'To do' }}
+      </span>
+    </div>
+    @if (task().description) {
+      <p class="description">{{ task().description }}</p>
+    }
+    <small class="meta">Created {{ task().createdAt | date: 'medium' }}</small>
+  </div>
+
+  <div class="actions">
+    <button type="button" (click)="toggle.emit(task().id)">
+      {{ task().status === 'done' ? 'Undo' : 'Complete' }}
+    </button>
+    <button type="button" (click)="edit.emit(task().id)">Edit</button>
+    <button type="button" class="danger" (click)="remove.emit(task().id)">Delete</button>
+  </div>
+</li>

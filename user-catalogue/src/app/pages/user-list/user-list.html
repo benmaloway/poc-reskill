@@ -1,0 +1,37 @@
+<section class="card">
+  <div class="toolbar">
+    <input
+      type="search"
+      placeholder="Search by name, email or city"
+      aria-label="Search users"
+      [value]="search()"
+      (input)="onSearch($event)"
+    />
+    <button
+      type="button"
+      class="refresh"
+      (click)="userService.refresh()"
+      [disabled]="userService.loading()"
+    >
+      {{ userService.loading() ? 'Refreshing…' : 'Refresh' }}
+    </button>
+    <a class="button primary" routerLink="/users/new">Add user</a>
+  </div>
+
+  @if (userService.error(); as error) {
+    <app-error-message [message]="error" (retry)="userService.refresh()" />
+  }
+
+  @if (userService.loading() && userService.users().length === 0) {
+    <app-loading-indicator label="Loading users…" />
+  } @else if (filteredUsers().length > 0) {
+    <app-user-table [users]="filteredUsers()" />
+    <p class="count">
+      Showing {{ filteredUsers().length }} of {{ userService.users().length }} users
+    </p>
+  } @else if (search()) {
+    <p class="empty">No users match “{{ search() }}”.</p>
+  } @else if (!userService.error()) {
+    <p class="empty">No users to show.</p>
+  }
+</section>

@@ -1,0 +1,14 @@
+<main>
+  <header>
+    <div>
+      <h1>User Catalogue</h1>
+      <p>Users loaded live from the JSONPlaceholder API.</p>
+    </div>
+    <label class="outage" title="Make every API call fail, to see the error handling">
+      <input type="checkbox" [checked]="outage.enabled()" (change)="outage.toggle()" />
+      Simulate API down
+    </label>
+  </header>
+
+  <router-outlet />
+</main>

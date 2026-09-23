@@ -1,0 +1,6 @@
+<div class="error-box" role="alert">
+  <p>{{ message() }}</p>
+  @if (retryable()) {
+    <button type="button" (click)="retry.emit()">Try again</button>
+  }
+</div>

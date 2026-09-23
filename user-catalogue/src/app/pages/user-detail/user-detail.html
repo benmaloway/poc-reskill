@@ -1,0 +1,53 @@
+<a class="back" routerLink="/">← Back to users</a>
+
+<section class="card">
+  @if (state().status === 'loading') {
+    <app-loading-indicator label="Loading user…" />
+  } @else if (state().status === 'not-found') {
+    <app-error-message [message]="'User #' + id() + ' does not exist.'" [retryable]="false" />
+  } @else if (errorMessage(); as message) {
+    <app-error-message [message]="message" (retry)="retry()" />
+  } @else if (user(); as user) {
+    <h2>{{ user.name }}</h2>
+    <p class="username">&#64;{{ user.username }}</p>
+
+    <dl>
+      <dt>Email</dt>
+      <dd>
+        <a [href]="'mailto:' + user.email">{{ user.email }}</a>
+      </dd>
+
+      <dt>Phone</dt>
+      <dd>{{ user.phone || '—' }}</dd>
+
+      <dt>Website</dt>
+      <dd>
+        @if (user.website) {
+          <a [href]="'https://' + user.website" target="_blank" rel="noopener">{{
+            user.website
+          }}</a>
+        } @else {
+          —
+        }
+      </dd>
+
+      <dt>Address</dt>
+      <dd>
+        @if (user.street) {
+          {{ user.street }}<br />
+        }
+        {{ user.city || '—' }} {{ user.zipcode }}
+      </dd>
+
+      <dt>Company</dt>
+      <dd>{{ user.company || '—' }}</dd>
+    </dl>
+
+    @if (user.local) {
+      <p class="note">
+        This user was created in this session. The demo API accepted the request but does not store
+        data, so the user disappears when you reload the page.
+      </p>
+    }
+  }
+</section>

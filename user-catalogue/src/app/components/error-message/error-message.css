@@ -1,0 +1,19 @@
+.error-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  flex-shrink: 0;
+}

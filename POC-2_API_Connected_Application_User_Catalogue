@@ -1,0 +1,18 @@
+#POC 2 — API-Connected Application (User Catalogue)
+Context: learning to interact with a backend (other than Drupal).
+Objective: create an Angular application connected to an API (e.g., weather, products, users).
+
+##To build:
+Call a public API (e.g., users)
+Display a list of users (name, email, city)
+Add: user detail page, refresh button, error handling (API down)
+
+Technical context: HttpClient + RxJS, service → component architecture.
+
+Expected deliverables: functional app with dynamic data, loading/error handling, clear service/API separation.
+
+Estimated effort: 3–4 days
+
+Technical challenges: HttpClient usage, API calls (GET / POST), RxJS / Observables intro, error handling.
+
+What this builds: ability to work in a modern architecture, API-driven development, base for real client projects.

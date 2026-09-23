@@ -1,0 +1,21 @@
+@if (tasks().length) {
+  <ul>
+    @for (task of tasks(); track task.id) {
+      <app-task-item
+        [task]="task"
+        [editing]="task.id === editingId()"
+        (toggle)="onToggle($event)"
+        (edit)="onEdit($event)"
+        (remove)="onRemove($event)"
+      />
+    }
+  </ul>
+} @else {
+  <p class="empty">
+    @switch (filter()) {
+      @case ('todo') { Nothing left to do. }
+      @case ('done') { No completed tasks yet. }
+      @default { No tasks yet — add one above. }
+    }
+  </p>
+}
