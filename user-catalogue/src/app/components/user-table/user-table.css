@@ -1,4 +1,4 @@
-:host {
+/* :host {
   display: block;
   overflow-x: auto;
 }
@@ -45,3 +45,4 @@ td:first-child a {
   background: var(--ok-bg);
   color: var(--ok-fg);
 }
+ */

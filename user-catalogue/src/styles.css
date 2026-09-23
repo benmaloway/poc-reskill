@@ -33,7 +33,7 @@
   box-sizing: border-box;
 }
 
-body {
+/* body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
@@ -44,7 +44,7 @@ body {
     Roboto,
     sans-serif;
   line-height: 1.45;
-}
+} */
 
 main {
   max-width: 860px;
