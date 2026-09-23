@@ -42,6 +42,26 @@ cd user-catalogue
 npm start -- --port 4201
 ```
 
+## Stopping the server
+
+Angular has no separate stop command (there is no `ng stop`). `npm start` runs `ng serve`, and that one process is both the development server and the app: the app only exists while `ng serve` is running, so stopping the server stops the app.
+
+If the server is running in your terminal, press `Ctrl+C` in that terminal.
+
+If it was started somewhere you can't reach (another terminal, a closed window or a background task), stop whatever is listening on the port:
+
+```bash
+lsof -ti tcp:4200 -sTCP:LISTEN | xargs kill
+```
+
+Change `4200` to the port you used, for example `4201`. To check what is on the port before stopping it, run `lsof -i tcp:4200 -sTCP:LISTEN`. If nothing is printed, no server is running there.
+
+A few things to know:
+
+- **Process names**: `lsof` lists the server as `node`, and `ps` shows it as `ng serve (<project-name>)`, started by an `npm start` parent process. Stopping `ng serve` also ends `npm start`.
+- **Open browser tabs**: a tab keeps showing the last page it loaded after the server stops. Reloading it gives a "can't connect" error, which confirms the server is down.
+- **Exit code 143**: if the server was stopped with `kill`, it exits with code 143 (it received a stop signal, SIGTERM). This is expected and doesn't mean it crashed.
+
 ## Other commands
 
 Run these from inside a project folder.
@@ -54,7 +74,7 @@ Run these from inside a project folder.
 
 ## Troubleshooting
 
-- **`Port 4200 is already in use`**: another app (often the other POC) is still running. Stop it with `Ctrl+C`, or start this one on another port as shown above.
+- **`Port 4200 is already in use`**: another app (often the other POC) is still running. Stop it (see [Stopping the server](#stopping-the-server)), or start this one on another port as shown above.
 - **Errors after pulling changes or switching Node versions**: delete `node_modules` in that project and run `npm install` again.
 - **POC 2 shows "Can't reach the server"**: check your internet connection, and make sure the **Simulate API down** checkbox in the header is unticked.
 - **POC 1 shows old tasks**: tasks live in localStorage. See [Resetting data](task-manager/README.md#resetting-data).

@@ -1,4 +1,4 @@
-ul {
+/* ul {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -11,3 +11,4 @@ ul {
   color: var(--muted);
   padding: 2rem 0;
 }
+ */
